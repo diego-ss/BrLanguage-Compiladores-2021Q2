@@ -1,0 +1,42 @@
+programa
+
+  inteiro a, b;
+  texto  t1;
+  decimal i;
+  booleano x;
+  vetorNumeros v;
+  
+  v = {1,2,3,4};
+  
+  // isto e um comentário
+  /* isto é outro comentário */
+  
+  x = true;
+  t1 = "verdadeiro";
+  
+  leia(a);
+  leia(b);
+  leia(i);
+  
+  
+  a = 1 + 2 * 3 / b;
+
+  
+enquanto( a < 10 ){
+	escreva(a);
+
+	se ( a > b) {
+		escreva(a);
+	}
+	senao {
+		escreva(a);
+	}
+}
+
+enquanto ( x == true) {
+	leia(t1);
+}
+  
+  
+
+fimprog;
