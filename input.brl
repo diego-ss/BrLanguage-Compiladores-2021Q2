@@ -1,10 +1,15 @@
 programa
 
-  inteiro a, b;
+  inteiro a, b, c, d;
   texto  t1;
   decimal i;
-  booleano x;
+  booleano x, y;
   vetorNumeros v;
+  
+  percorrer (i=10;i<100; 2) 
+  { 
+  	leia(a);
+  }
   
   v = {1,2,3,4};
   
@@ -12,17 +17,20 @@ programa
   /* isto é outro comentário */
   
   x = true;
+  y = true;
   t1 = "verdadeiro";
   
   leia(a);
   leia(b);
   leia(i);
+  leia(x);
   
   
+  b = 2;
   a = 1 + 2 * 3 / b;
 
   
-enquanto( a < 10 ){
+enquanto( a < b ){
 	escreva(a);
 
 	se ( a > b) {
@@ -33,7 +41,7 @@ enquanto( a < 10 ){
 	}
 }
 
-enquanto ( x == true) {
+enquanto ( x == y) {
 	leia(t1);
 }
   

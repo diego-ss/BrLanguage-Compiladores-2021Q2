@@ -29,17 +29,16 @@ public class MainClass {
 			CommonTokenStream tokenStream = new CommonTokenStream(lexer);
 			
 			// crio meu parser a partir desse tokenStream
-			parser = new BrLangParser(tokenStream);
-			
+			parser = new BrLangParser(tokenStream);	
 			parser.prog();
-			
-			System.out.println("Compilation Successful");
-			
-			//parser.exibeComandos();
+					
+		    parser.exibeComandos();
 			parser.exibeVariaveis();
 			parser.exibeVariaveisNaoUtilizadas();
 			parser.verificarTipos();
 			parser.generateCode();
+			
+			System.out.println("Compilation Successful");
 			
 		}
 		catch(BrSemanticException ex) {

@@ -26,6 +26,9 @@ grammar BrLang;
 	private String _exprContent;
 	private String _exprDecision;
 	private String _exprLoop;
+	private String _exprPercorrerDeclaracao;
+	private String _exprPercorrerComparacao;
+	private String _exprPercorrerPasso;
 	private ArrayList<AbstractCommand> listaTrue;
 	private ArrayList<AbstractCommand> listaFalse;
 	private ArrayList<AbstractCommand> listaLoop;
@@ -222,6 +225,7 @@ cmd		:  cmdleitura
  		|  cmdattrib
  		|  cmdselecao
  		|  cmdrepeticao 
+ 		|  cmdpercorrer
 		;
 		
 cmdleitura	: 'leia' AP
@@ -301,7 +305,7 @@ cmdselecao  :  'se' AP
 cmdrepeticao : 'enquanto' AP
 						ID { _exprLoop = _input.LT(-1).getText(); }
 						OPREL { _exprLoop += _input.LT(-1).getText(); }
-						( DECIMAL | BOOLEANO ) { _exprLoop += _input.LT(-1).getText(); }
+						( DECIMAL | BOOLEANO | ID) { _exprLoop += _input.LT(-1).getText(); }
 						FP
 						ACH 
 						{ 
@@ -317,6 +321,38 @@ cmdrepeticao : 'enquanto' AP
 						}
                     ;
 			
+cmdpercorrer: 'percorrer' AP
+						ID {
+							verificaID(_input.LT(-1).getText());
+                    		_exprID = _input.LT(-1).getText();
+                    		BrVariable var = (BrVariable)symbolTable.get(_exprID);
+						}
+						ATTR 
+						( DECIMAL | INTEIRO ) { 
+							_exprPercorrerDeclaracao = _input.LT(-1).getText(); 
+							var.setValue(_input.LT(-1).getText());
+						}
+						SC 
+						ID { _exprPercorrerComparacao = _input.LT(-1).getText(); }
+						OPREL { _exprPercorrerComparacao += _input.LT(-1).getText(); }
+						DECIMAL { _exprPercorrerComparacao += _input.LT(-1).getText(); }
+						SC
+						( DECIMAL | INTEIRO ) { _exprPercorrerPasso = _input.LT(-1).getText(); }
+						FP
+						ACH 
+						{ 
+							curThread = new ArrayList<AbstractCommand>(); 
+                      		stack.push(curThread);
+                    	}
+						(cmd+)
+						FCH 
+						{
+							listaLoop = stack.pop();
+							CommandPercorrer cmd = new CommandPercorrer(_exprID, _exprPercorrerDeclaracao, _exprPercorrerComparacao, _exprPercorrerPasso, listaLoop);
+							stack.peek().add(cmd);
+						}
+			;
+
 			
 expr		:  termo ( 
 	             OP  { _exprContent += _input.LT(-1).getText();}
@@ -376,7 +412,7 @@ INTEIRO	: [0-9]
 DECIMAL	: [0-9]+ ('.' [0-9]+)?
 ;
 
-VETOR_NUMEROS : '{' ( DECIMAL ( ',' DECIMAL)* )? '}'
+VETOR_NUMEROS : '{' ( (DECIMAL | ID) ( ',' (DECIMAL | ID))* )? '}'
 ;			
 
 WS	: (' ' | '\t' | '\n' | '\r') -> skip;

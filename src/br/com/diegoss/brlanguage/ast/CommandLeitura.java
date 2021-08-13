@@ -18,7 +18,7 @@ public class CommandLeitura extends AbstractCommand {
 		if(var.getType() == BrVariable.INTEIRO) {
 			str = "int.Parse(Console.ReadLine());";
 		} else if (var.getType() == BrVariable.DECIMAL) {
-			str = "double.Parse(Console.ReadLine();";
+			str = "double.Parse(Console.ReadLine());";
 		} else if (var.getType() == BrVariable.BOOLEANO){
 			str = "bool.Parse(Console.ReadLine());";
 		} else {

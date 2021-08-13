@@ -158,6 +158,18 @@ public class BrLangBaseListener implements BrLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCmdpercorrer(BrLangParser.CmdpercorrerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdpercorrer(BrLangParser.CmdpercorrerContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpr(BrLangParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}

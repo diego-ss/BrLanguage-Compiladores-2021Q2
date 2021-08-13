@@ -128,6 +128,16 @@ public interface BrLangListener extends ParseTreeListener {
 	 */
 	void exitCmdrepeticao(BrLangParser.CmdrepeticaoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link BrLangParser#cmdpercorrer}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdpercorrer(BrLangParser.CmdpercorrerContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link BrLangParser#cmdpercorrer}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdpercorrer(BrLangParser.CmdpercorrerContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link BrLangParser#expr}.
 	 * @param ctx the parse tree
 	 */
